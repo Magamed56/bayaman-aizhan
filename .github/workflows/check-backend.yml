@@ -1,0 +1,33 @@
+name: Check Google Sheet backend
+
+# Ручная проверка Apps Script: Actions → Check Google Sheet backend → Run workflow.
+# Показывает, что отвечает скрипт; с галочкой write_test — пишет тестовый ответ (строку потом удалите).
+on:
+  workflow_dispatch:
+    inputs:
+      write_test:
+        description: "Записать тестовый ответ в таблицу (потом удалите строку)"
+        type: boolean
+        default: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ask the Apps Script
+        env:
+          WRITE: ${{ inputs.write_test }}
+        run: |
+          URL=$(grep -o 'https://script.google.com/macros/s/[^"]*/exec' config.js)
+          show() { sed -e 's/<[^>]*>/ /g' | tr -s ' \n' | head -c 1500; echo; }
+          echo "URL: $URL"
+          echo "--- version";  curl -sL --max-time 30 "$URL?action=version" | show
+          echo "--- wishes (reads the sheet)"; curl -sL --max-time 30 "$URL?action=wishes" | show
+          echo "--- views"; curl -sL --max-time 30 "$URL?action=views" | show
+          if [ "$WRITE" = "true" ]; then
+            echo "--- POST test answer"
+            curl -sL --max-time 30 -H "Content-Type: text/plain;charset=utf-8" \
+              --data '{"name":"ТЕСТ (текшерүү) — өчүрүңүз","rsvp":"yes","rsvpLabel":"Келемин","guests":1,"wish":"","timestamp":"'"$(date -u +%FT%TZ)"'"}' \
+              "$URL" | show
+          fi
