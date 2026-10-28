@@ -72,6 +72,6 @@ window.WEDDING = {
     closingText: "С нетерпением ждём вас!",
   },
 
-  // Музыка — пока «Свадебная» (Мот), как у прошлых пар; чтобы поменять, замените assets/music.mp3 (тот же путь)
+  // Музыка — «Perfect» (Ed Sheeran); чтобы поменять, замените assets/music.mp3 (тот же путь)
   music: "assets/music.mp3",
 };
