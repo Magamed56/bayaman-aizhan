@@ -19,7 +19,7 @@
 var VERSION = "4";            // ?action=version — проверка, что развёрнута новая версия
 var SHEET_NAME = "Жооптор";
 // ID таблицы из её ссылки docs.google.com/spreadsheets/d/<ID>/edit — нужен, только если скрипт создан не из таблицы
-var SPREADSHEET_ID = "";
+var SPREADSHEET_ID = "1up6clrll73SbxE8TEoLPIZEIm5oJ5cr60sk95gC7uOI";   // «Той — Баяман & Айжан»
 
 var HEADERS = ["Убакыт", "Аты-жөнү", "Жооп", "Адам саны", "Каалоо", "Сайтта"];
 var COL = { time: 1, name: 2, answer: 3, guests: 4, wish: 5, show: 6 };
