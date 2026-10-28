@@ -43,7 +43,7 @@
       guestsLabel: "Канча адам келесиз?", wishLabel: "Каалоо (милдеттүү эмес)", wishPh: "Жаш үй-бүлөгө бир-эки жылуу сөз…", change: "Жоопту өзгөртүү",
       yourAnswer: "Сиздин жооп", people: "адам", cta: "Жооп берүү",
       kWishes: "Каалоолор", wishesTitle: "Конокторубуздун жылуу сөздөрү", wishHint: "Каалооңуз ушул сайттагы «Каалоолор» бөлүмүндө көрүнөт",
-      views: "Чакырууну {n} адам көрдү", next: "Ары карай",
+      views: "Чакырууну {n} адам көрдү", next: "Ары карай", toTop: "Башына",
       labels: { yes: "Келемин", both: "Жубайым менен келемин", no: "Келе албаймын" },
       wa: (g, b) => `Саламатсызбы! ${g} менен ${b} үйлөнүү тоюна жооп 💍`, waName: "Аты-жөнү", waAnswer: "Жооп", calTitle: (g, b) => `${g} & ${b} — үйлөнүү той`,
       months: ["январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь"],
@@ -64,7 +64,7 @@
       guestsLabel: "Сколько человек придёт?", wishLabel: "Пожелание (необязательно)", wishPh: "Пара тёплых слов молодой семье…", change: "Изменить ответ",
       yourAnswer: "Ваш ответ", people: "чел.", cta: "Ответить",
       kWishes: "Пожелания", wishesTitle: "Тёплые слова гостей", wishHint: "Ваше пожелание появится на сайте в разделе «Пожелания»",
-      views: "Приглашение посмотрели: {n}", next: "Дальше",
+      views: "Приглашение посмотрели: {n}", next: "Дальше", toTop: "Наверх",
       labels: { yes: "Приду", both: "Приду с супругом(ой)", no: "Не смогу" },
       wa: (g, b) => `Здравствуйте! Ответ на приглашение на свадьбу ${g} и ${b} 💍`, waName: "Имя", waAnswer: "Ответ", calTitle: (g, b) => `${g} & ${b} — свадьба`,
       months: ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"],
@@ -219,6 +219,8 @@
       || (coords ? `https://www.google.com/maps/search/?api=1&query=${coords}`
       : query ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`
       : `https://2gis.kg/search/${encodeURIComponent(search)}`);
+    // Карта не ловит касания (иначе палец на карте листает карту, а не страницу) — нажатие открывает 2GIS
+    const mapLink = $("#map-link"); if (mapLink) mapLink.href = $("#route-btn").href;
   })();
 
   function renderAll() {
@@ -284,6 +286,8 @@
   }));
   const hint = $(".scroll-hint");
   if (hint) hint.addEventListener("click", (e) => { e.preventDefault(); $("#invite").scrollIntoView({ behavior: "smooth" }); });
+  const up = $("#to-top");
+  if (up) up.addEventListener("click", (e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: REDUCED ? "auto" : "smooth" }); });
 
   /* ---------- Алтын чаң / Золотая пыль ---------- */
   const rootCss = getComputedStyle(document.documentElement);

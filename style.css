@@ -252,6 +252,10 @@ body.opened .scroll-hint { opacity: 1; }
 .map-arch { position: relative; width: min(420px, 100%); height: 360px; margin: 24px auto 30px; padding: 8px; background: var(--paper); border-radius: 4px; box-shadow: inset 0 0 0 1px var(--line), 0 26px 50px -30px rgba(47, 61, 79, .55); }
 .map-arch iframe, .map-arch__empty { display: block; width: 100%; height: 100%; border: 0; border-radius: 2px; }
 .map-arch iframe[hidden], .map-arch__empty[hidden] { display: none; }
+/* Карта не перехватывает прокрутку на телефоне; поверх — ссылка на 2GIS */
+.map-arch iframe { pointer-events: none; }
+.map-arch__link { position: absolute; z-index: 2; inset: 8px; border-radius: 2px; -webkit-tap-highlight-color: transparent; }
+.map-arch__link:focus-visible { outline: 2px solid var(--wax-2); outline-offset: 3px; }
 .map-arch__empty { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; background: var(--ivory); color: var(--ink); }
 .map-arch__pin { width: 46px; height: 46px; color: var(--wax-2); animation: bob 2.6s ease-in-out infinite; }
 @keyframes bob { 50% { transform: translateY(-6px); } }
@@ -320,6 +324,13 @@ body.opened .scroll-hint { opacity: 1; }
 .footer__views { display: flex; align-items: center; justify-content: center; gap: 7px; margin-top: 28px; font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: .1em; color: var(--muted); }
 .footer__views[hidden] { display: none; }
 .footer__views svg { width: 15px; height: 15px; flex: none; color: var(--ink-soft); }
+/* «Башына» — вернуться к началу / Наверх */
+.to-top { display: inline-flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 26px; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+.to-top b { font-family: var(--sans); font-size: 9.5px; font-weight: 600; letter-spacing: .32em; padding-left: .32em; text-transform: uppercase; color: var(--ink-soft); }
+.to-top__btn { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; color: #fff; background: var(--navy); box-shadow: 0 0 0 4px rgba(47, 61, 79, .1), 0 10px 22px -8px rgba(47, 61, 79, .6); transition: background .3s; }
+.to-top__btn svg { width: 22px; height: 22px; transform: rotate(180deg); }
+.to-top:hover .to-top__btn, .to-top:active .to-top__btn { background: var(--wax-2); }
+.to-top:focus-visible { outline: 2px solid var(--wax-2); outline-offset: 3px; border-radius: 12px; }
 
 /* ---------- Жооп берүү баскычы / Плавающая кнопка ---------- */
 .cta { position: fixed; left: 50%; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 80; display: inline-flex; align-items: center; gap: 10px; padding: 14px 26px; border-radius: 999px; text-decoration: none; font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: #fff; background: var(--navy); box-shadow: 0 14px 30px -10px rgba(47, 61, 79, .6); transform: translate(-50%, 180%); transition: transform .6s var(--ease); }
