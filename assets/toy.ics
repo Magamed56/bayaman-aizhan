@@ -6,8 +6,8 @@ METHOD:PUBLISH
 BEGIN:VEVENT
 UID:toy-2026-11-12-bayaman-aizhan@magamed56.github.io
 DTSTAMP:20261028T120000Z
-DTSTART:20261112T110000Z
-DTEND:20261112T160000Z
+DTSTART:20261112T100000Z
+DTEND:20261112T150000Z
 SUMMARY:Баяман & Айжан — үйлөнүү той
 LOCATION:«Айкол Гранд» рестораны
 DESCRIPTION:Чакыруу: https://magamed56.github.io/bayaman-aizhan/
