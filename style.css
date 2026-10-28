@@ -29,7 +29,8 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; background: var(--bg); overflow-x: hidden; }
+/* Без scroll-behavior и overflow на html — частые причины «залипшей» прокрутки в Safari; ширину обрезает body (clip) */
+html { -webkit-text-size-adjust: 100%; background: var(--bg); }
 body {
   margin: 0; min-height: 100vh;
   font-family: var(--serif); font-weight: 500; font-size: 19px; line-height: 1.6; font-variant-numeric: lining-nums;
@@ -75,7 +76,7 @@ svg use { pointer-events: none; }
   background: radial-gradient(110% 70% at 50% 42%, #eef3f7 0%, #dbe4ed 55%, #c3d0dc 100%);
 }
 .intro.is-open { opacity: 0; transform: scale(1.04); transition: opacity .7s ease 1.75s, transform 1s ease 1.75s; }
-.intro.is-hidden { visibility: hidden; pointer-events: none; }
+.intro.is-hidden { display: none; }
 /* Авиапочта: красно-синяя полоска по краю, как на конверте / Airmail stripes */
 .intro__frame { position: absolute; inset: max(12px, env(safe-area-inset-top)) 12px max(12px, env(safe-area-inset-bottom)); border: 7px solid transparent; pointer-events: none; animation: fadeIn 1.4s ease .2s both;
   border-image: repeating-linear-gradient(-45deg, var(--wax-2) 0 9px, transparent 9px 14px, var(--navy) 14px 23px, transparent 23px 28px) 7; opacity: .85; }
@@ -441,10 +442,6 @@ body.opened .hero__amp { animation: popIn .8s cubic-bezier(.3, 1.6, .5, 1) 1.9s 
 .card-garland, .footer__garland, .bq--mini, .hero__garland { opacity: 0; scale: .55; transition: opacity .8s ease .45s, scale 1.3s cubic-bezier(.3, 1.45, .5, 1) .45s; }
 .reveal.in .card-garland, .reveal.in .footer__garland, .reveal.in .bq--mini { opacity: 1; scale: 1; }
 body.opened .hero__garland { opacity: 1; scale: 1; transition-delay: 2.6s; }
-.reveal.in .bq--mini { animation: sway 6s ease-in-out 1.6s infinite alternate; }
-/* Каптал бутактар термелет / Ветки по краям покачиваются */
-.sp { transform-origin: 50% 100%; animation: sway 6.5s ease-in-out infinite alternate; }
-.sp--r { animation-duration: 7.5s; animation-delay: -3s; }
 /* Каллиграфиялык аталыштар жазылат / Заголовки «пишутся» */
 .reveal .title:not(.title--serif), .reveal .footer__names span { clip-path: inset(-30% 100% -30% -14%); }
 .reveal.in .title:not(.title--serif) { animation: write 1.5s cubic-bezier(.55, .1, .3, 1) .3s both; }

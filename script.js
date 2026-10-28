@@ -270,11 +270,13 @@
   }, { threshold: [0, 0.12], rootMargin: "0px 0px -6% 0px" });
   $$(".reveal").forEach((el) => io.observe(el));
 
+  // Полоска прогресса: меняем только её transform (переменная на :root пересчитывала стили всей страницы)
+  const bar = $(".progress");
   let sTick = false;
   addEventListener("scroll", () => {
-    if (sTick) return; sTick = true;
+    if (sTick || !bar) return; sTick = true;
     requestAnimationFrame(() => {
-      document.documentElement.style.setProperty("--sp", (scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight)).toFixed(4));
+      bar.style.transform = `scaleX(${(scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight)).toFixed(4)})`;
       sTick = false;
     });
   }, { passive: true });
