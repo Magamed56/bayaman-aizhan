@@ -91,7 +91,7 @@ function testAppend() {
 function setupSheet() {
   var sheet = getOrCreateSheet();
   sheet.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS])
-    .setFontWeight("bold").setBackground("#9E5A61").setFontColor("#FFFDFA");
+    .setFontWeight("bold").setBackground("#2F3D4F").setFontColor("#FFFDFA");
   sheet.setColumnWidth(COL.time, 140); sheet.setColumnWidth(COL.name, 230); sheet.setColumnWidth(COL.answer, 200);
   sheet.setColumnWidth(COL.guests, 90); sheet.setColumnWidth(COL.wish, 340); sheet.setColumnWidth(COL.show, 70);
   sheet.getRange(1, COL.wish, sheet.getMaxRows(), 1).setWrap(true);
