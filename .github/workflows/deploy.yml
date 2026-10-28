@@ -18,6 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Check the Google Sheet backend (read-only, ?action=version)
+        run: |
+          URL=$(grep -o 'https://script.google.com/macros/s/[^"]*/exec' config.js || true)
+          if [ -n "$URL" ]; then echo "Apps Script: $(curl -sL --max-time 30 "$URL?action=version" || echo 'нет ответа')"; else echo "googleScriptUrl пустой"; fi
       - name: Stamp asset version and publish main to gh-pages
         run: |
           git config user.name "github-actions[bot]"
