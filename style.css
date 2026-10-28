@@ -34,7 +34,8 @@ body {
   margin: 0; min-height: 100vh;
   font-family: var(--serif); font-weight: 500; font-size: 19px; line-height: 1.6; font-variant-numeric: lining-nums;
   color: var(--ink); background: var(--hearts), linear-gradient(180deg, var(--bg-2), var(--bg) 40%, var(--bg-2));
-  overflow-x: hidden; -webkit-font-smoothing: antialiased;
+  /* clip, а не hidden: hidden делает body отдельной прокручиваемой областью — на iPhone внизу страница «застревала» */
+  overflow-x: hidden; overflow-x: clip; -webkit-font-smoothing: antialiased;
 }
 body.locked { overflow: hidden; height: 100vh; }
 h1, h2, h3, p { margin: 0; font-weight: 400; }
@@ -315,7 +316,7 @@ body.opened .scroll-hint { opacity: 1; }
 .success__answer { margin: 14px 0 18px; font-family: var(--sans); font-size: 11px !important; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); }
 
 /* ---------- Аягы / Подвал ---------- */
-.footer { position: relative; padding: 70px 0 calc(70px + env(safe-area-inset-bottom)); text-align: center; background: linear-gradient(transparent, rgba(195, 208, 220, .7)); }
+.footer { position: relative; overflow: hidden; padding: 70px 0 calc(70px + env(safe-area-inset-bottom)); text-align: center; background: linear-gradient(transparent, rgba(195, 208, 220, .7)); }
 .footer .mini-seal { margin: 0 auto 20px; }
 .footer__text { font-family: var(--serif); font-size: 16px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; line-height: 1.5; color: var(--navy); }
 .footer__names { display: flex; flex-direction: column; align-items: center; font-family: var(--script); font-size: clamp(56px, 16vw, 78px); line-height: 1.05; margin: 14px 0 10px; color: var(--navy); }
